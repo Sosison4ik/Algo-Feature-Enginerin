@@ -60,7 +60,7 @@ print(max_value)
 print(f"Категория '{max_idx[0]}' возрастная группе '{max_idx[1]}'")
 # У какого приложения не указан тип ('Type')? Какой тип там необходимо записать в зависимости от цены?
 mask = df['Type'].isna()
-df.loc[mask, 'Type'] = np.where(df.loc[mask, 'Price'] == 0, 'Free', 'Paid')
+df.loc[mask, 'Type'] = df.loc[mask, 'Price'].apply(lambda x: 'Free' if x == 0 else 'Paid')
 print(df)
 # Выведи информацию о всем DataFrame, чтобы убедиться, что очистка прошла успешно
 print('\n')
